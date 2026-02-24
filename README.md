@@ -1,11 +1,20 @@
 # RGCC-X⁺
-## Risk-Gated Contractive Control with Latent State Estimation  
+## Risk-Gated Contractive Control with Latent State Estimation
 ### A Control-Theoretic Framework for Provably Bounded Hallucination Suppression in Large Language Models
 
-Author: Alim ul Haq Khan  
+**Author:** Alim ul Haq Khan  
 Independent Researcher – Cognitive Systems & Emotional AI  
 Founder, Aura-X Ω  
 UK Patent Application No. 2518804.6  
+
+---
+
+## 🌐 Live Demo
+
+🔗 **Interactive Web Simulation:**  
+https://alimulhaqkhan-prog.github.io/rgcc-x-plus-control-framework/
+
+(If the page does not load, ensure GitHub Pages is enabled in repository settings.)
 
 ---
 
@@ -37,11 +46,11 @@ where:
 
 Steady state:
 
-e* = epsilon / eta
+e* = epsilon / eta  
 
 Epistemic Reliability Equation:
 
-e* = c * H(Y|X) / eta
+e* = c * H(Y|X) / eta  
 
 This formalizes the trade-off between conditional entropy and control strength.
 
@@ -109,14 +118,14 @@ rgcc-x-plus-control-framework/ │ ├── index.html # Web simulation demo �
 
 ## 🚀 Running the Simulation
 
-If Python implementation is added:
+### Web Demo
+Open the live demo above or run locally:
 
+Open index.html in your browser
+
+### Python (if added later)
 
 pip install -r requirements.txt python experiments/synthetic_validation.py
-
-For web demo:
-
-Open `index.html` in browser.
 
 ---
 
