@@ -1,161 +1,266 @@
 RGCC-X⁺
+
 Risk-Gated Contractive Control with Latent State Estimation
-A Control-Theoretic Framework for Provably Bounded Hallucination Suppression in Large Language Models
+
+A Control-Theoretic Framework for Bounded Hallucination Dynamics in Large Language Models
+
 Author: Alim ul Haq Khan
-Independent Researcher – Cognitive Systems & Emotional AI
-Founder, Aura-X Ω
+Independent Researcher — Cognitive Systems
 UK Patent Application No. 2518804.6
-📚 Version History
-This repository contains the V1 implementation. Extended versions are available as open-access preprints:
-Version
-Title
-DOI
-Published
-V1
-RGCC-X⁺: Contractive Control for Hallucination Suppression (this repository)
-Submitted to Springer Nature
-2025
-V2
-RGCC-X⁺ V2: Recursive Geometric Contraction Control — A Lyapunov-Inspired Dynamic Stability Framework with Empirical Validation
-�
-Feb 25, 2026
-Load image
-V3
-RGCC-X⁺ V3: Universal Cross-Model Adaptive Orchestration for Hallucination Mitigation with Bayesian Cost Calibration
-�
-Feb 26, 2026
-Load image
-What's new in each version
-V2 adds:
-Extended Kalman Filter (EKF) for nonlinear state tracking
-Logistic regression-derived risk weights (ROC-AUC = 0.847)
-Cost-Aware Adaptive Routing layer (Theorem 6) — average overhead 1.28×
-Self-correction recovery module (Theorem 5)
-Full empirical validation: 312-question benchmark, human annotation κ = 0.74
-V3 adds:
-Cross-model universality across 3 LLM families (Claude-3, GPT-4-class, Gemini-class)
-Bayesian λ auto-calibration — converges to 1.19× average cost in ~120 turns
-Conversation Graph stability detector for coordinated adversarial sequences
-Extended benchmark: N = 624, 8 stress categories, three-way ANOVA
-🌐 Live Demo
-🔗 Interactive Web Simulation:
-https://alimulhaqkhan-prog.github.io/rgcc-x-plus-control-framework/
+
+
+---
+
 📘 Overview
-RGCC-X⁺ is a control-theoretic middleware framework that models hallucination in large language models (LLMs) as a stochastic dynamical state and applies:
+
+RGCC-X⁺ is a control-theoretic middleware framework that models hallucination in large language models (LLMs) as a stochastic dynamical process and applies adaptive contraction to bound epistemic drift.
+
+Rather than treating hallucination as a static retrieval problem, RGCC-X⁺ formulates it as a recursive stability problem and introduces:
+
 Contractive feedback control
-Kalman latent state estimation
-Risk-gated adaptive contraction
-Lyapunov stability certification
-Information-theoretic lower bounds
-The framework provides formal guarantees of bounded hallucination dynamics under stated assumptions, rather than relying purely on empirical mitigation.
-🧠 Core Mathematical Model
-Hallucination state evolution:
-e_{t+1} = (1 - eta) * e_t + epsilon + xi_t
-where:
-eta ∈ (0,1] → contraction strength
-epsilon → entropy-imposed irreducible floor
-xi_t → stochastic disturbance
-Steady state:
-e* = epsilon / eta
-Epistemic Reliability Equation:
-e* = c * H(Y|X) / eta
-📐 Theoretical Guarantees (V1 — 5 Theorems)
-Uniform Ultimate Boundedness
-Drift Suppression
-Switching Stability
-Adversarial Damping
-Entropy-Imposed Lower Bound
-V2 extends to 6 theorems; V3 to 9 theorems. See preprints above.
+
+Risk-gated adaptive gain scheduling
+
+Latent epistemic state estimation
+
+Escalation-based stabilization
+
+Formal boundedness guarantees within a defined state abstraction
+
+
+The framework is model-agnostic and designed as an external regulation layer.
+
+
+---
+
+🧠 Core Mathematical Formulation
+
+Hallucination state recurrence:
+
+e_{t+1} = (1 - η_t) e_t + ε + ξ_t
+
+Where:
+
+e_t ∈ [0,1] — epistemic error state
+
+η_t ∈ (0,1] — adaptive contraction gain
+
+ε — irreducible entropy-imposed error floor
+
+ξ_t — stochastic disturbance
+
+
+Steady-state bound:
+
+e* = ε / η
+
+This establishes an explicit trade-off between contraction strength and asymptotic hallucination floor.
+
+Theoretical guarantees apply to the defined recurrence abstraction, not to internal transformer dynamics.
+
+
+---
+
+📐 Theoretical Contributions (V1)
+
+1. Uniform Ultimate Boundedness
+
+
+2. Drift Suppression under Persistent Forcing
+
+
+3. Switching Stability
+
+
+4. Adversarial Damping Bound
+
+
+5. Entropy-Imposed Lower Limit
+
+
+
+Later versions extend these results.
+
+
+---
+
 🔬 Synthetic Validation (V1)
-Monte Carlo simulation — 300 steps, 50 seeds:
-Condition
-Steady-State
-Variance @ t=300
-Uncontrolled
-No convergence
-0.120
-Static (eta=0.4)
-0.050
-0.00063
-Adaptive RGCC-X⁺
-0.038
-0.00048
-All results match theoretical predictions within < 5% error.
-📊 Preliminary Empirical Evidence — TruthfulQA Subset (V1)
-Method
-Hallucination Rate
-Latency
-Baseline
-28%
-1.0×
-Static contraction
-21%
-1.8×
-Adaptive RGCC-X⁺
-16%
-1.4×
-For full empirical validation (N=312, human-annotated), see V2 preprint.
-🏗 Architecture
+
+Monte Carlo simulation (300 steps, 50 seeds):
+
+Condition	Steady-State	Variance @ t=300
+
+Uncontrolled	No convergence	0.120
+Static contraction	0.050	0.00063
+Adaptive RGCC-X⁺	0.038	0.00048
+
+
+Observed dynamics align with theoretical predictions within <5% deviation.
+
+
+---
+
+📊 Preliminary Empirical Evaluation (V1)
+
+TruthfulQA subset (exploratory):
+
+Method	Hallucination Rate	Latency
+
+Baseline	28%	1.0×
+Static contraction	21%	1.8×
+Adaptive RGCC-X⁺	16%	1.4×
+
+
+Comprehensive human-annotated benchmark evaluation is introduced in V2.
+
+
+---
+
+🔄 Version History
+
+V1 — Foundational Framework (This Repository)
+
+Contractive control formulation
+
+Scalar latent state abstraction
+
+Synthetic validation
+
+Exploratory empirical evaluation
+
+Submitted to Springer Nature journal (2026)
+
+
+V2 — Stability + Empirical Benchmark
+
+DOI: https://doi.org/10.5281/zenodo.18770256
+
+Extended Kalman Filter (EKF)
+
+Logistic risk weighting (ROC-AUC = 0.847)
+
+312-question human benchmark (κ = 0.74)
+
+Cost-aware adaptive routing (~1.28× average overhead)
+
+
+V3 — Cross-Model Adaptive Orchestration
+
+DOI: https://doi.org/10.5281/zenodo.18780684
+
+Cross-model validation (multiple LLM families)
+
+Bayesian λ cost calibration (converges to ~1.19× average cost)
+
+Extended benchmark (N = 624)
+
+Economic routing consolidation
+
+
+
+---
+
+🏗 System Architecture
+
 Pipeline stages:
-Generation
-Risk Computation
-Kalman State Estimation
-Adaptive Contraction
-Escalation (if needed)
-Stabilized Output
+
+1. Response generation
+
+
+2. Risk estimation
+
+
+3. Latent state update
+
+
+4. Adaptive contraction
+
+
+5. Escalation (if required)
+
+
+6. Stabilized output
+
+
+
+Later versions include Kalman filtering and economic routing.
+
+
+---
+
 📂 Repository Structure
+
 rgcc-x-plus-control-framework/
 │
-├── index.html          # Web simulation demo
-├── /experiments        # Synthetic experiments
-├── /rgcc               # Core control logic (planned)
+├── index.html          # Interactive simulation demo
+├── experiments/        # Synthetic validation scripts
+├── rgcc/               # Core modules (development branch)
 └── README.md
-🚀 Running the Simulation
-Web Demo — open the live demo above or run locally:
-Open index.html in your browser
-Python (if added later):
+
+
+---
+
+🚀 Running the Demo
+
+Web Simulation
+
+Open index.html locally
+or visit:
+
+https://alimulhaqkhan-prog.github.io/rgcc-x-plus-control-framework/
+
+Python (if enabled)
+
 pip install -r requirements.txt
 python experiments/synthetic_validation.py
-📖 Manuscript
-V1 — Full manuscript submitted to Discover Artificial Intelligence (Springer Nature)
-V2 Preprint: https://doi.org/10.5281/zenodo.18770256
-V3 Preprint: https://doi.org/10.5281/zenodo.18780684
-📜 Citation
-V1:
-@article{khan2025rgcc,
-  title     = {RGCC-X+: Risk-Gated Contractive Control with Latent State Estimation},
-  author    = {Khan, Alim ul Haq},
-  year      = {2025}
-}
-V2:
-@misc{khan2026rgccv2,
-  title     = {RGCC-X+ V2: Recursive Geometric Contraction Control for Large Language Model Hallucination Mitigation},
-  author    = {Khan, Alim ul Haq},
-  year      = {2026},
-  doi       = {10.5281/zenodo.18770256},
-  url       = {https://doi.org/10.5281/zenodo.18770256}
-}
-V3:
-@misc{khan2026rgccv3,
-  title     = {RGCC-X+ V3: Universal Cross-Model Adaptive Orchestration for Hallucination Mitigation},
-  author    = {Khan, Alim ul Haq},
-  year      = {2026},
-  doi       = {10.5281/zenodo.18780684},
-  url       = {https://doi.org/10.5281/zenodo.18780684}
-}
-⚠ Limitations (V1)
-Controls stochastic error, not systematic bias
-Linear-Gaussian assumption
+
+
+---
+
+📖 Manuscripts
+
+V1 — Submitted to Springer Nature (2026)
+
+V2 — Zenodo DOI available
+
+V3 — Zenodo DOI available
+
+
+For full derivations, proofs, and benchmark details, see corresponding preprints.
+
+
+---
+
+⚠ Limitations
+
 Scalar state abstraction
-Preliminary empirical scope (addressed in V2 and V3)
-🧭 Research Direction
-RGCC-X⁺ contributes toward Epistemic Stability Engineering —
-the design of provably bounded cognitive systems.
-📄 License
-© 2026 Alim ul Haq Khan. UK Patent Application No. 2518804.6.
-V1 code: open for academic use.
-V2/V3 frameworks: see individual preprint licenses.
+
+Linear-Gaussian assumption (V1)
+
+Controls stochastic drift, not systematic bias
+
+Theoretical guarantees apply to recurrence model abstraction
+
+
+
+---
+
+📜 License & Intellectual Property
+
+© 2026 Alim ul Haq Khan. All rights reserved.
+UK Patent Application No. 2518804.6.
+
+This repository (V1) is provided for academic research and non-commercial evaluation purposes only.
+
+Commercial use, derivative implementation, or deployment of the RGCC-X⁺ framework without prior written permission is prohibited.
+
+
+---
+
 📬 Contact
-alimulhaqkhan@gmail.com
-Timergara, Lower Dir, Khyber Pakhtunkhwa, Pakistan
-ORCID: 0009-0001-4708-0365
+
+Email: alimulhaqkhan@gmail.com
+ORCID: https://orcid.org/0009-0001-4708-0365
+
+
+---
