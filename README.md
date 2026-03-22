@@ -27,7 +27,7 @@
 
 ## 🎭 Live Demo
 
-> **No API key required — click Demo Mode in the header**
+> **API key required — click Demo Mode in the header**
 
 <div align="center">
 
